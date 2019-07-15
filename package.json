@@ -1,0 +1,20 @@
+{
+  "name": "chinese-idiom-chengyu",
+  "version": "1.0.0",
+  "description": "A package that contains utility functions for Chinese idioms or chengyu.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chinese",
+    "idiom",
+    "chengyu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wenhuangzeng/chinese-idioms-chengyu.git"
+  },
+  "author": "Wenhuang Zeng",
+  "license": "MIT"
+}
