@@ -1,4 +1,9 @@
-const { nextIdiomsWithMatchingTonePinyin, nextIdiomsWithMatchingCharacter, nextIdiomsWithMatchingNoTonePinyin } = require(__dirname + '/../src/tools/solitaire.js');
+const chengyu = require(__dirname + '/../src/index.js');
 
-console.log(nextIdiomsWithMatchingNoTonePinyin('全力以赴').length)
-console.log(nextIdiomsWithMatchingNoTonePinyin('全力以赴')[0])
+console.log(chengyu.nextIdiomsWithMatchingCharacter('全力以赴'))
+console.log(chengyu.nextIdiomsWithMatchingNoTonePinyin('全力以赴', {word: false, pinyin: true}))
+console.log(chengyu.nextIdiomsWithMatchingTonePinyin('全力以赴', {word: true, pinyin: false}))
+console.log(chengyu.getDefinition('全力以赴'))
+console.log(chengyu.startWithCharacter('全'))
+console.log(chengyu.startWithTonePinyin('quán'))
+console.log(chengyu.startWithNoTonePinyin('quan'))

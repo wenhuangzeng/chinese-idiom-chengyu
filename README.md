@@ -7,32 +7,57 @@ npm install chinese-idioms-chengyu
 ```
 
 ## Usage
-### Functions
+### Solitaire Functions
 | Name | Params | Description | Error handling |
 | ---- | ------ | ----------- | -------------- | 
-| `nextIdiomsWithMatchingCharacter` | `idiomWord` - Chinese characters of the idiom | Returns a list of idiom word-pinyin-pairs that have idioms where the first character is the same as the last character of the parameter `idiomWord`. | Throw an error when `idiomWord` does not exist.
-| `nextIdiomsWithMatchingTonePinyin` | `idiomWord` - Chinese characters of the idiom | Returns a list of idiom word-pinyin-pairs that have idioms where the pinyin of the first character is the same as the pinyin of the last character of the parameter `idiomWord`. | Throw an error when `idiomWord` does not exist.
-| `nextIdiomsWithMatchingNoTonePinyin` | `idiomWord` - Chinese characters of the idiom | Returns a list of idiom word-pinyin-pairs that have idioms where the pinyin of the first character is the same as the pinyin of the last character of the parameter `idiomWord` disregarding the tone. | Throw an error when `idiomWord` does not exist.
+| `nextIdiomsWithMatchingCharacter` | `idiomWord` - String of Chinese characters of the idiom <br> `options` - return idioms as word-pinyin-pairs, words, or pinyin | Returns a list of idiom word-pinyin-pairs, words, or pinyin that have idioms where the first character is the same as the last character of the parameter `idiomWord`. | Throw an error when `idiomWord` does not exist.
+| `nextIdiomsWithMatchingTonePinyin` | `idiomWord` - String of Chinese characters of the idiom <br> `options` - return idioms as word-pinyin-pairs, words, or pinyin | Returns a list of idiom word-pinyin-pairs, words, or pinyin that have idioms where the pinyin of the first character is the same as the pinyin of the last character of the parameter `idiomWord`. | Throw an error when `idiomWord` does not exist.
+| `nextIdiomsWithMatchingNoTonePinyin` | `idiomWord` - String of Chinese characters of the idiom <br> `options` - return idioms as word-pinyin-pairs, words, or pinyin | Returns a list of idiom word-pinyin-pairs, words, or pinyin that have idioms where the pinyin of the first character is the same as the pinyin of the last character of the parameter `idiomWord` disregarding the tone. | Throw an error when `idiomWord` does not exist.
+
+
+### Search Functions
+| Name | Params | Description | Error handling |
+| ---- | ------ | ----------- | -------------- | 
+| `startWithCharacter` | `character` - String of first character of the idiom <br> `options` - return idioms as word-pinyin-pairs, words, or pinyin | Return a list of idiom word-pinyin-pairs, word, or pinyin that starts with the parameter `character`. | Throw an error when `options` is not valid.
+| `startWithTonePinyin` | `pinyin` - String of pinyin of first character of the idiom <br> `options` - return idioms as word-pinyin-pairs, words, or pinyin | Return a list of idiom word-pinyin-pairs, word, or pinyin that starts with the parameter `pinyin`. | Throw an error when `options` is not valid.
+| `startWithNoTonePinyin` | `noTonePinyin` - String of no tone pinyin of first character of the idiom <br> `options` - return idioms as word-pinyin-pairs, words, or pinyin | Return a list of idiom word-pinyin-pairs, word, or pinyin that starts with the parameter `noTonEpinyin`. | Throw an error when `options` is not valid.
+| `getDefinition` | `idiomWord` - String of idiom word | Return the definition of the parameter `idiomWord` | Throw an error when `idiomWord` does not exist. |
+
+### Options
+| Name | Type | Default value | Description |
+| ---- | ---- | ------------- | ----------- |
+| `word` | Boolean | true | Whether returned idioms include the string of words |
+| `pinyin` | Boolean | true | Whether returned idioms include the string of pinyin |
 
 ### Example
 ```bash
 const chengyu = require('chinese-idioms-chengyu')
 
 const idiom = '全力以赴' // [ '全力以赴' : 'quán lì yǐ fù' ]
-const lessIdioms = chengyu.nextIdiomsWithMatchingCharacter('全力以赴')
+const lessIdioms = chengyu.nextIdiomsWithMatchingCharacter(idiom)
 console.log(lessIdioms.length)
 console.log(lessIdioms[0])
 
-const moreIdioms = chengyu.nextIdiomsWithMatchingNoTonePinyin('全力以赴')
+const wordOnly = chengyu.nextIdiomsWithMatchingCharacter(idiom, {word: true, pinyin: false})
+console.log(wordOnly[0])
+
+const moreIdioms = chengyu.nextIdiomsWithMatchingNoTonePinyin(idiom)
 console.log(moreIdioms.length)
 console.log(moreIdioms[0])
+
+const pinyinOnly = chengyu.nextIdiomsWithMatchingNoTonePinyin(idiom, {word: false, pinyin: true})
+console.log(pinyinOnly[0])
+
+
 ```
 ### Output
 ```bash
 2
 [ '赴汤蹈火', 'fù tāng dǎo huǒ' ]
+赴汤蹈火
 347
 [ '夫倡妇随', 'fū chàng fù suí' ]
+fū chàng fù suí
 ```
 
 ## License
